@@ -1,0 +1,17 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = ">=4.0"
+v = {editable = true,version = "*"}
+pylint = ">=2"
+autopep8 = "*"
+
+[packages]
+numpy = ">=1.0"
+gym = "*"
+
+[requires]
+python_version = "3.6"
