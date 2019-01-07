@@ -23,3 +23,5 @@ def test_state_rep():
         total += val
 
     assert total - reward < 1e-4
+
+    _ = gym.make('Cliffworld-v0')
