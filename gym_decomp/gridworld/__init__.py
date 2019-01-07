@@ -24,6 +24,14 @@ class __Gridworld(gym.Env, metaclass=ABCMeta):
         self.action_space = spaces.Discrete(4)
         self.__action_map = ['u', 'd', 'l', 'r']
 
+    @property
+    def reward_types(self):
+        return self.__world.reward_types
+
+    @property
+    def action_meanings(self):
+        return ['up', 'down', 'left', 'right']
+
     def reset(self):
         self.__curr_state = self.__world.reset()
 

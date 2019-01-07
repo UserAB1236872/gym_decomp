@@ -12,6 +12,7 @@ def test_state_rep():
     nxt, reward, terminal, info = env.step(2)
     assert nxt.shape == (8,)
     assert isinstance(reward, float)
+    #pylint: disable=c0121
     assert terminal == True or terminal == False
 
     assert 'reward_decomposition' in info
