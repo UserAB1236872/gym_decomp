@@ -2,8 +2,10 @@ from abc import ABCMeta
 
 import gym
 from gym import spaces
+from gym.utils import seeding
 
-#pylint: disable=C0103
+
+# pylint: disable=C0103
 
 
 class __Gridworld(gym.Env, metaclass=ABCMeta):
@@ -23,6 +25,7 @@ class __Gridworld(gym.Env, metaclass=ABCMeta):
         self.__curr_state = None
         self.action_space = spaces.Discrete(4)
         self.__action_map = ['u', 'd', 'l', 'r']
+        self.seed()
 
     @property
     def reward_types(self):
@@ -52,7 +55,9 @@ class __Gridworld(gym.Env, metaclass=ABCMeta):
         pass
 
     def seed(self, seed=None):
-        pass
+        self.np_random, seed1 = seeding.np_random(seed)
+        seed2 = seeding.hash_seed(seed1 + 1) % 2 ** 31
+        return [seed1, seed2]
 
     def render(self, mode="println"):
         print(self.__world.statify(self.__curr_state))

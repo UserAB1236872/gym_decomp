@@ -1,12 +1,12 @@
 # pylint: disable=C0111,C0103
 
+import os
 import pathlib
 import subprocess
 
 from setuptools import setup, find_packages
 from setuptools.command.install import install
 from setuptools.command.develop import develop
-
 
 __requires__ = ['pipenv']
 
@@ -33,7 +33,7 @@ class PostInstallCommand(install):
         install.run(self)
 
 
-with open(base_dir / 'README.md', encoding='utf-8') as f:
+with open(os.path.join(str(base_dir), 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
