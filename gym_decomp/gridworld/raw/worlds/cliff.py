@@ -3,7 +3,7 @@ import numpy as np
 from gym_decomp.gridworld.raw import Gridworld
 
 
-class CliffWorld(Gridworld):
+class Cliffworld(Gridworld):
     def __init__(self, misfire_prob=0.1):
         cliff = np.array([
             [0, 0, 0, 0, 0],

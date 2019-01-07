@@ -58,15 +58,15 @@ class __Gridworld(gym.Env, metaclass=ABCMeta):
         print(self.__world.statify(self.__curr_state))
 
 
-class CliffWorldV0(__Gridworld):
+class CliffworldV0(__Gridworld):
     """
     A small toy problem with several reward types and a "cliff" along the bottom you can fall off
     """
 
     def __init__(self):
-        from gym_decomp.gridworld.raw.worlds import CliffWorld as __CliffWorld
+        from gym_decomp.gridworld.raw.worlds import Cliffworld as __Cliffworld
 
-        world = __CliffWorld()
+        world = __Cliffworld()
         super().__init__(world)
 
 
