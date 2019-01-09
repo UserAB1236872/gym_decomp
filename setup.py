@@ -37,7 +37,7 @@ with open(os.path.join(str(base_dir), 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='dll_api',
+    name='gym_decomp',
     use_scm_version=True,
     long_description='\n' + long_description,
     packages=packages,
