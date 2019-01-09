@@ -9,3 +9,8 @@ register(
     id='Cliffworld-v0',
     entry_point='gym_decomp.gridworld:CliffworldV0'
 )
+
+register(
+    id="HivSimulator-v0",
+    entry_point='gym_decomp.hiv:HivSimV0'
+)

@@ -12,6 +12,8 @@ autopep8 = "*"
 [packages]
 numpy = ">=1.0"
 gym = "*"
+hip-mdp-public = {git = "https://github.com/Zaerei/hip-mdp-public"}
+numba = ">=0.42"
 
 [requires]
 python_version = "3.6"
