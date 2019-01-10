@@ -1,6 +1,9 @@
 """
 Tests for the SCAII Four Towers
 """
+import unittest
+import os
+
 import gym
 
 import gym_decomp as _
@@ -9,10 +12,14 @@ from gym_decomp.scaii import REPLAY_PATH
 # pylint: disable=C0111
 
 
+@unittest.skipIf("TRAVIS" in os.environ and os.environ["TRAVIS"] == "true",
+                 "Skipping this test on Travis CI.")
 def test_init_scaii():
     _scaii = gym.make('ScaiiFourTowers-v1')
 
 
+@unittest.skipIf("TRAVIS" in os.environ and os.environ["TRAVIS"] == "true",
+                 "Skipping this test on Travis CI.")
 def test_reset_scaii():
     scaii = gym.make('ScaiiFourTowers-v1')
 
@@ -22,6 +29,8 @@ def test_reset_scaii():
     assert len(state) == 40*40*8
 
 
+@unittest.skipIf("TRAVIS" in os.environ and os.environ["TRAVIS"] == "true",
+                 "Skipping this test on Travis CI.")
 def test_act_scaii():
     scaii = gym.make('ScaiiFourTowers-v1')
 
@@ -47,6 +56,8 @@ def test_act_scaii():
     assert total - reward < 1e-8
 
 
+@unittest.skipIf("TRAVIS" in os.environ and os.environ["TRAVIS"] == "true",
+                 "Skipping this test on Travis CI.")
 def test_record_scaii():
     scaii = gym.make('ScaiiFourTowers-v1')
 
