@@ -1,9 +1,6 @@
 """
 Tests for the SCAII Four Towers
 """
-from pathlib import Path
-import uuid
-
 import gym
 
 import gym_decomp as _
@@ -52,8 +49,6 @@ def test_act_scaii():
 
 def test_record_scaii():
     scaii = gym.make('ScaiiFourTowers-v1')
-
-    uuid_dir = uuid.uuid1()
 
     scaii.record = True
     scaii.reset()
