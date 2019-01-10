@@ -60,11 +60,15 @@ class HivSimV0(gym.Env):
         return self.__world.observe()
 
     def step(self, action):
-        reward, nxt = self.__world.perform_action(action)
+        _, nxt = self.__world.perform_action(action)
         # In the code for perform_action, the total reward is calculated after the updates
         # So this is proper
         typed_reward = self.__world.typed_reward(action)
         terminal = self.__world.is_done()
+
+        reward = 0
+        for val in typed_reward.values():
+            reward += val
 
         info = {'reward_decomposition': typed_reward}
 
