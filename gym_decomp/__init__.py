@@ -14,3 +14,8 @@ register(
     id="HivSimulator-v0",
     entry_point='gym_decomp.hiv:HivSimV0'
 )
+
+register(
+    id="ScaiiFourTowers-v1",
+    entry_point='gym_decomp.scaii:FourTowersV1'
+)
