@@ -44,6 +44,16 @@ class HivSimV0(gym.Env):
         """
         return ["None active", "RTI Active", "PI Active", "RTI & PI Active"]
 
+    @property
+    def reward_types(self):
+        """
+        The valid reward types
+        """
+        return ["V: Free HI viruses",
+                "Episode value 1",
+                "Episode value 2",
+                "E: Cytotoxic T-lymphocytes"]
+
     def reset(self):
         self.__world.reset()
 
