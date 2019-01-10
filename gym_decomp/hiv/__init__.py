@@ -13,6 +13,8 @@ from hiv_simulator.hiv import HIVTreatment
 import gym
 from gym import spaces
 
+import numpy as np
+
 
 class HivSimV0(gym.Env):
     """
@@ -69,6 +71,8 @@ class HivSimV0(gym.Env):
         reward = 0
         for val in typed_reward.values():
             reward += val
+
+        assert not np.isnan(reward)
 
         info = {'reward_decomposition': typed_reward}
 
