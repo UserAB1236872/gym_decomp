@@ -75,7 +75,7 @@ class HivSimV0(gym.Env):
         for val in typed_reward.values():
             reward_sum += val
 
-        if reward_sum - reward > 1e-8:
+        if reward_sum - reward > 1e-8 or np.isnan(reward_sum):
             logging.warning("Warning, HIV Decomposition =/= returned reward:\nReward: %f\n\
             Decomposition: %s (sum: %f)\n", reward, typed_reward, reward_sum)
             info['warning_decomposition_mismatch'] = True
