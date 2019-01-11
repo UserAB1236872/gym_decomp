@@ -1,6 +1,7 @@
 """
 Test suite for the "qworld" exploration wrapper
 """
+from gym.utils import seeding
 
 from gym_decomp.gridworld.raw.worlds import MiniGridworld
 from gym_decomp.gridworld.raw.q_world import QWorld
@@ -13,7 +14,8 @@ TEST_POINTS = 1000
 
 def test_reset():
     underlying = MiniGridworld()
-    world = QWorld(underlying)
+    np_rand, _ = seeding.np_random(0)
+    world = QWorld(underlying, np_rand)
     terminals = underlying.terminals
     impassable = underlying.impassable
 
@@ -23,7 +25,8 @@ def test_reset():
 
 
 def test_act():
-    world = QWorld(MiniGridworld())
+    np_rand, _ = seeding.np_random(0)
+    world = QWorld(MiniGridworld(), np_rand)
 
     state = (2, 0)
     nxt = (2, 1)

@@ -21,7 +21,8 @@ class __Gridworld(gym.Env, metaclass=ABCMeta):
     def __init__(self, world):
         from gym_decomp.gridworld.raw.q_world import QWorld as __QWorld
 
-        self.__world = __QWorld(world)
+        self.np_random, _ = seeding.np_random(None)
+        self.__world = __QWorld(world, self.np_random)
         self.__curr_state = None
         self.action_space = spaces.Discrete(4)
         self.__action_map = ['u', 'd', 'l', 'r']
@@ -57,6 +58,8 @@ class __Gridworld(gym.Env, metaclass=ABCMeta):
     def seed(self, seed=None):
         self.np_random, seed1 = seeding.np_random(seed)
         seed2 = seeding.hash_seed(seed1 + 1) % 2 ** 31
+
+        self.__world.np_random = self.np_random
         return [seed1, seed2]
 
     def render(self, mode="println"):

@@ -1,12 +1,18 @@
-import random
-
-
 class QWorld(object):
-    def __init__(self, world):
+    def __init__(self, world, np_random):
+        self.__np_random = np_random
         self.__world = world
         self.__shape = world.shape
         self.__actions = world.actions
         self.__reward_types = [*world.rewards.keys()]
+
+    @property
+    def np_random(self):
+        return self.__np_random
+
+    @np_random.setter
+    def np_random(self, val):
+        self.__np_random = val
 
     @property
     def shape(self):
@@ -21,11 +27,14 @@ class QWorld(object):
         return self.__reward_types
 
     def reset(self):
-        return random.choice([*self.__world.nonterminal_states()])
+        non_terms = [*self.__world.nonterminal_states()]
+        print(len(non_terms))
+        idx = self.np_random.choice(len(non_terms), None)
+        return non_terms[idx]
 
     def act(self, state, action):
         cum_prob = 0.0
-        roll = random.random()
+        roll = self.np_random.rand()
 
         for nxt in self.__world.successors(state, action):
             cum_prob += self.__world.transition_prob(

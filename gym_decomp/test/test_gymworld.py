@@ -1,6 +1,5 @@
 import gym
 import gym_decomp as _
-import numpy as np
 
 
 def test_state_rep():
