@@ -11,6 +11,11 @@ register(
 )
 
 register(
+    id='CliffworldDeterministic-v0',
+    entry_point='gym_decomp.gridworld:CliffworldDeterministicV0'
+)
+
+register(
     id="HivSimulator-v0",
     entry_point='gym_decomp.hiv:HivSimV0'
 )

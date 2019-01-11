@@ -88,3 +88,17 @@ class MiniGridworldV0(__Gridworld):
 
         world = __MiniGridworld()
         super().__init__(world)
+
+
+class CliffworldDeterministicV0(__Gridworld):
+    """
+    A small toy problem with several reward types and a "cliff" along the bottom you can fall off.
+
+    Unlike the normal one, this one has no ability to "fall"
+    """
+
+    def __init__(self):
+        from gym_decomp.gridworld.raw.worlds import Cliffworld as __Cliffworld
+
+        world = __Cliffworld(misfire_prob=0.0)
+        super().__init__(world)
