@@ -1,6 +1,7 @@
 """
 Wrappers for SCAII scenarios, primarily four towers derivatives.
 """
+import os
 from pathlib import Path
 import logging
 
@@ -29,7 +30,7 @@ class FourTowersV1(gym.Env):
 
         self.action_space = spaces.Discrete(4)
 
-        if REPLAY_PATH.exists():
+        if REPLAY_PATH.exists() and os.listdir(REPLAY_PATH):
             logging.warning(
                 "Warning, replays in .scaii/replays may get clobbered,\
                 appending .bak and making a fresh directory")

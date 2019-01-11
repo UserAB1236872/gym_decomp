@@ -54,25 +54,3 @@ def test_act_scaii():
         total += val
 
     assert total - reward < 1e-8
-
-
-@unittest.skipIf("TRAVIS" in os.environ and os.environ["TRAVIS"] == "true",
-                 "Skipping this test on Travis CI.")
-def test_record_scaii():
-    scaii = gym.make('ScaiiFourTowers-v1')
-
-    scaii.record = True
-    scaii.reset()
-
-    terminal = False
-
-    q_vals = {}
-
-    for r_type in scaii.reward_types:
-        q_vals[r_type] = [0.0, 1.5, -2.2, 3.7]
-
-    action = 3
-    while not terminal:
-        _, _, terminal, _ = scaii.step(action, q_vals=q_vals)
-
-    assert (REPLAY_PATH / "replay.scr").exists()
