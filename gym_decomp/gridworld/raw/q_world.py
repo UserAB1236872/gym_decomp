@@ -28,7 +28,6 @@ class QWorld(object):
 
     def reset(self):
         non_terms = [*self.__world.nonterminal_states()]
-        print(len(non_terms))
         idx = self.np_random.choice(len(non_terms), None)
         return non_terms[idx]
 
