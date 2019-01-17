@@ -63,8 +63,8 @@ class __Gridworld(gym.Env, metaclass=ABCMeta):
         return [seed1, seed2]
 
     def render(self, mode="println"):
-        print(self.__world.statify(self.__curr_state))
-
+        state = self.__world.statify(self.__curr_state)
+        return state
 
 class CliffworldV0(__Gridworld):
     """

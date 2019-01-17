@@ -59,7 +59,6 @@ class HivSimV0(gym.Env):
 
     def reset(self):
         self.__world.reset()
-
         return self.__world.observe()
 
     def step(self, action):
@@ -83,4 +82,4 @@ class HivSimV0(gym.Env):
         return nxt, reward, terminal, info
 
     def render(self, mode=None):
-        pass
+        return self.__world.observe()
