@@ -82,4 +82,7 @@ class HivSimV0(gym.Env):
         return nxt, reward, terminal, info
 
     def render(self, mode=None):
+        print(mode)
+        if mode == 'print':
+            return str(self.__world.observe())
         return self.__world.observe()

@@ -62,9 +62,11 @@ class __Gridworld(gym.Env, metaclass=ABCMeta):
         self.__world.np_random = self.np_random
         return [seed1, seed2]
 
-    def render(self, mode="println"):
-        state = self.__world.statify(self.__curr_state)
-        return state
+    def render(self, mode="print"):
+        if mode == 'print':
+            return str(self.__world.statify(self.__curr_state))
+        return self.__world.statify(self.__curr_state)
+
 
 class CliffworldV0(__Gridworld):
     """
