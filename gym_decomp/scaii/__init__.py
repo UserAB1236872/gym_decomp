@@ -121,8 +121,8 @@ class FourTowersV1(gym.Env):
         """
         return self.__curr_state
 
-    def render(self, mode=None):
-        pass
+    def render(self, mode='print'):
+        return self.unflattened_state
 
     def reset(self):
         if self.record and not REPLAY_PATH.exists():
