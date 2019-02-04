@@ -22,11 +22,19 @@ class __Gridworld(gym.Env, metaclass=ABCMeta):
         from gym_decomp.gridworld.raw.q_world import QWorld as __QWorld
 
         self.np_random, _ = seeding.np_random(None)
-        self.__world = __QWorld(world, self.np_random)
+        _world = __QWorld(world, self.np_random)
+        self.__world = _world
+        self.states = _world.states
         self.__curr_state = None
         self.action_space = spaces.Discrete(4)
         self.__action_map = ['u', 'd', 'l', 'r']
         self.seed()
+
+    def transition_prob(self,state,action,next_state):
+        return self.__world.transition_prob(state,action,next_state)
+
+    def reward(self,state):
+        return self.__world.reward(state)
 
     @property
     def reward_types(self):

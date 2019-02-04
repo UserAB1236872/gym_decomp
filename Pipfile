@@ -12,8 +12,7 @@ autopep8 = "*"
 numpy = ">=1.0"
 gym = "*"
 hip-mdp-public = {git = "https://github.com/Zaerei/hip-mdp-public"}
-numba = ">=0.42"
-libscaii = {git = "https://github.com/lwneal/libscaii"}
+numba = "==0.42.0"
 
 [requires]
-python_version = "3.6"
+python_version = "3.5"
