@@ -45,7 +45,7 @@ class HivSimV0(gym.Env):
         """
         The meanings of the actions we can take, in order of index
         """
-        return ["None active", "RTI Active", "PI Active", "RTI & PI Active"]
+        return ["None", "RTI", "PI", "RTI & PI"]
 
     @property
     def reward_types(self):
@@ -53,9 +53,9 @@ class HivSimV0(gym.Env):
         The valid reward types
         """
         return ["V: Free HI viruses",
-                "Episode value 1",
-                "Episode value 2",
-                "E: Cytotoxic T-lymphocytes"]
+                "RTI Side effect",
+                "PI Side effect",
+                "E: Cytotoxic T-lymphocytes (Immune Response)"]
 
     def reset(self):
         self.__world.reset()
@@ -66,6 +66,8 @@ class HivSimV0(gym.Env):
         # In the code for perform_action, the total reward is calculated after the updates
         # So this is proper
         typed_reward = self.__world.typed_reward(action)
+        typed_reward['RTI Side Effect'] = typed_reward["Episode value 1"]
+        typed_reward['PI Side Effect'] = typed_reward["Episode value 2"]
         terminal = self.__world.is_done()
 
         info = {'reward_decomposition': typed_reward}
@@ -82,7 +84,7 @@ class HivSimV0(gym.Env):
         return nxt, reward, terminal, info
 
     def render(self, mode=None):
-        print(mode)
         if mode == 'print':
-            return str(self.__world.observe())
+            obs = self.__world.observe()
+            return "\n".join([self.state_meanings[i].split(":")[0] + ": " + str(round(obs[i],3)) for i in range(len(obs))])
         return self.__world.observe()
