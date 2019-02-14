@@ -8,6 +8,9 @@ from setuptools import setup, find_packages
 from setuptools.command.install import install
 from setuptools.command.develop import develop
 
+packages = find_packages(exclude=['tests'])
+base_dir = pathlib.Path(__file__).parent
+
 requirements = ["numpy>=1.0",
                 "gym=*",
                 "hip-mdp-public=https://github.com/Zaerei/hip-mdp-public",
