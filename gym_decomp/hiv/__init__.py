@@ -68,13 +68,17 @@ class HivSimV0(gym.Env):
         typed_reward = self.__world.typed_reward(action)
         typed_reward['RTI Side Effect'] = typed_reward["Episode value 1"]
         typed_reward['PI Side Effect'] = typed_reward["Episode value 2"]
+        typed_reward.pop("Episode value 1")
+        typed_reward.pop("Episode value 2")
+
         terminal = self.__world.is_done()
 
         info = {'reward_decomposition': typed_reward}
 
         reward_sum = 0
-        for val in typed_reward.values():
-            reward_sum += val
+        for k in typed_reward.keys():
+            typed_reward[k] = round(typed_reward[k],3)
+            reward_sum += typed_reward[k]
 
         if reward_sum - reward > 1e-8 or np.isnan(reward_sum):
             logging.warning("Warning, HIV Decomposition =/= returned reward:\nReward: %f\n\
