@@ -13,8 +13,8 @@ __requires__ = ['pipenv']
 packages = find_packages(exclude=['tests'])
 base_dir = pathlib.Path(__file__).parent
 
-pipenv_command = ['pipenv', 'install', '--deploy', '--system']
-pipenv_command_dev = ['pipenv', 'install', '--dev', '--deploy', '--system']
+pipenv_command = ['pipenv', 'install', '--deploy']
+pipenv_command_dev = ['pipenv', 'install', '--dev', '--deploy']
 
 
 class PostDevelopCommand(develop):
