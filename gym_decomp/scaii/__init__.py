@@ -156,7 +156,7 @@ class FourTowersV1(gym.Env):
         assert action in range(0, 4)
         a = self.__world.new_action()
         # pylint: disable=E1101
-        a.attack_quadrant(action)
+        a.attack_quadrant(action+1)
 
         obs = None
         if self.record:
