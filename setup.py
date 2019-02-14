@@ -22,7 +22,7 @@ with open(os.path.join(str(base_dir), 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='gym_decomp',
-    use_scm_version=True,
+    use_scm_version=False,
     long_description='\n' + long_description,
     packages=packages,
     setup_requires=['setuptools_scm'],
