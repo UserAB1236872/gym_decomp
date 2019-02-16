@@ -165,7 +165,7 @@ class FourTowersV1(gym.Env):
                 obs = self.__world.act(a, explanation=explanation)
             else:
                 explanation = Explanation(
-                    "Attack %s" % self.action_meanings[a])
+                    "Attack %s" % self.action_meanings[action])
                 obs = self.__world.act(a, explanation=explanation)
         else:
             obs = self.__world.act(a)
