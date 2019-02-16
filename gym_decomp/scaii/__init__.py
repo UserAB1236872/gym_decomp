@@ -169,6 +169,7 @@ class FourTowersV1(gym.Env):
         self.__curr_state = obs.state
         terminal = obs.is_terminal()
 
+        print("hihihihihihi")
         reward = 0.0
         for val in obs.typed_reward.values():
             reward += float(val)
