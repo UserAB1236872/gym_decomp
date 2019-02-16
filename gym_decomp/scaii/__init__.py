@@ -171,7 +171,7 @@ class FourTowersV1(gym.Env):
 
         reward = 0.0
         for val in obs.typed_reward.values():
-            reward += val
+            reward += float(val)
 
         for r_type in self.reward_types:
             if r_type not in obs.typed_reward:
