@@ -160,9 +160,11 @@ class FourTowersV1(gym.Env):
 
         obs = None
         if self.record:
-            assert q_vals is not None
-            explanation = self.__build_explanation(q_vals)
-            obs = self.__world.act(a, explanation=explanation)
+            if q_vals is not None:
+                explanation = self.__build_explanation(q_vals)
+                obs = self.__world.act(a, explanation=explanation)
+            else:
+                obs = self.__world.act(a)
         else:
             obs = self.__world.act(a)
 
