@@ -169,7 +169,6 @@ class FourTowersV1(gym.Env):
         self.__curr_state = obs.state
         terminal = obs.is_terminal()
 
-        print("hihihihihihi")
         reward = 0.0
         for val in obs.typed_reward.values():
             reward += float(val)
@@ -178,7 +177,7 @@ class FourTowersV1(gym.Env):
             if r_type not in obs.typed_reward:
                 obs.typed_reward[r_type] = 0.0
 
-        info = {"reward_decomposition": obs.typed_reward}
+        info = {"reward_decomposition": dict(obs.typed_reward)}
 
         return self.curr_state, reward, terminal, info
 
