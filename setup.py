@@ -14,7 +14,8 @@ requirements = ["numpy>=1.0",
                 "gym==0.12.5",
                 "hip-mdp-public @ https://github.com/Zaerei/hip-mdp-public/archive/master.zip",
                 "llvmlite==0.27.0",
-                "numba==0.42.0"]
+                "numba==0.42.0",
+                "pylzma>=0.5"]
 
 with open(os.path.join(str(base_dir), 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
