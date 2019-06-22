@@ -8,6 +8,10 @@ import logging
 import gym
 from gym import spaces
 
+import gym_decomp.scaii.bootstrap as scaii_bootstrap
+
+scaii_bootstrap.check_setup()
+
 from scaii.env.sky_rts.env.scenarios.city_attack import CityAttack
 from scaii.env.explanation import Explanation, BarChart, BarGroup, Bar
 

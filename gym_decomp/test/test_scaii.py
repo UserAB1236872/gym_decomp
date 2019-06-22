@@ -12,14 +12,10 @@ from gym_decomp.scaii import REPLAY_PATH
 # pylint: disable=C0111
 
 
-@unittest.skipIf("TRAVIS" in os.environ and os.environ["TRAVIS"] == "true",
-                 "Skipping this test on Travis CI.")
 def test_init_scaii():
     _scaii = gym.make('ScaiiFourTowers-v1')
 
 
-@unittest.skipIf("TRAVIS" in os.environ and os.environ["TRAVIS"] == "true",
-                 "Skipping this test on Travis CI.")
 def test_reset_scaii():
     scaii = gym.make('ScaiiFourTowers-v1')
 
@@ -29,15 +25,16 @@ def test_reset_scaii():
     assert len(state) == 40*40*8
 
 
-@unittest.skipIf("TRAVIS" in os.environ and os.environ["TRAVIS"] == "true",
-                 "Skipping this test on Travis CI.")
 def test_act_scaii():
     scaii = gym.make('ScaiiFourTowers-v1')
 
     init_state = scaii.reset()
 
+    print("hi")
+    
     nxt, reward, terminal, info = scaii.step(2)
 
+    print(nxt, reward, terminal, info)
     assert len(nxt) == len(init_state) and (nxt != init_state).any()
     assert isinstance(reward, float)
     assert terminal in [True, False]
