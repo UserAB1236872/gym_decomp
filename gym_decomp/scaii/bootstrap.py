@@ -1,8 +1,9 @@
 from pathlib import Path
 from enum import IntEnum
+import platform
 import os
 import sys
-import urllib
+import urllib.request
 import tarfile
 from zipfile import ZipFile
 
@@ -73,13 +74,13 @@ def get_permission(msg: str) -> bool:
 
 
 def install_scaii(pre_permission: bool=False) -> None:
-    if os.name == 'Windows':
-        archive_name = "Windows10_x86_64.zip"
+    if platform.system() == 'Windows':
+        archive_name = "Windows10_x86_64.scaii.zip"
         archive_type = ArchiveType.ZIP
-    elif os.name == "Linux":
-        archive_name = "Linux_x86_64.tar.lzma"
+    elif platform.system() == "Linux":
+        archive_name = "Linux_x86_64.scaii.tar.lzma"
         archive_type = ArchiveType.LZMA
-    elif os.name == 'Darwin':
+    elif platform.system() == 'Darwin':
         raise Exception("OSX cannot auto-downloaded SCAII, please see https://github.com/SCAII/Sky-install for "
                         "instructions on how to build and install yourself")
     else:
@@ -98,7 +99,7 @@ def install_scaii(pre_permission: bool=False) -> None:
 
 def download_extract(archive_name: str, archive_type: ArchiveType) -> None:
     print("Downloading archive for your platform...")
-    urllib.urlretrieve("https://github.com/SCAII/SCAII/releases/latest/download/" + archive_name,
+    urllib.request.urlretrieve("https://github.com/SCAII/SCAII/releases/latest/download/" + archive_name,
                        Path.home() / archive_name)
 
     print()
@@ -107,11 +108,13 @@ def download_extract(archive_name: str, archive_type: ArchiveType) -> None:
         if archive_type.value == ArchiveType.ZIP.value:
             file = ZipFile(Path.home() / archive_name)
             file.extractall(path=Path.home())
+            file.close()
         elif archive_type.value == ArchiveType.LZMA.value:
             file = tarfile.open(Path.home() / archive_name, mode='r:xz')
             file.extractall(Path.home())
+            file.close()
     finally:
-        os.remove(Path.home() / archive_name)
+        os.remove(str(Path.home() / archive_name))
 
     print("Done")
 
