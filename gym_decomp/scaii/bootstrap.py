@@ -12,7 +12,7 @@ __all__ = ["check_setup"]
 
 class ArchiveType(IntEnum):
     ZIP = 1
-    LZMA = 2
+    GZ = 2
 
 
 INSTALL_STRING = "SCAII is not detected in the canonical location (<home>/.scaii), you may " \
@@ -78,8 +78,8 @@ def install_scaii(pre_permission: bool=False) -> None:
         archive_name = "Windows10_x86_64.scaii.zip"
         archive_type = ArchiveType.ZIP
     elif platform.system() == "Linux":
-        archive_name = "Linux_x86_64.scaii.tar.lzma"
-        archive_type = ArchiveType.LZMA
+        archive_name = "Linux-x86_64.scaii.tar.gz"
+        archive_type = ArchiveType.GZ
     elif platform.system() == 'Darwin':
         raise Exception("OSX cannot auto-downloaded SCAII, please see https://github.com/SCAII/Sky-install for "
                         "instructions on how to build and install yourself")
@@ -109,8 +109,8 @@ def download_extract(archive_name: str, archive_type: ArchiveType) -> None:
             file = ZipFile(Path.home() / archive_name)
             file.extractall(path=Path.home())
             file.close()
-        elif archive_type.value == ArchiveType.LZMA.value:
-            file = tarfile.open(Path.home() / archive_name, mode='r:xz')
+        elif archive_type.value == ArchiveType.GZ.value:
+            file = tarfile.open(Path.home() / archive_name, mode='r:gz')
             file.extractall(Path.home())
             file.close()
     finally:
